@@ -8,9 +8,14 @@ Example usage::
 # NOTE: This module must support Python 2.7 in addition to Python 3.x
 
 from typing import (
-    Callable, CallableMeta, Union, _Union, TupleMeta, TypeVar,
+    Callable, CallableMeta, Union, TupleMeta, TypeVar,
     _gorg, _ClassVar, GenericMeta,
 )
+
+try:
+    from typing import _Union
+except ImportError:
+    _Union = Union
 
 
 def is_generic_type(tp):
