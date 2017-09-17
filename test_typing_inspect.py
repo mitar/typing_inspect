@@ -5,9 +5,14 @@ from typing_inspect import (
 )
 from unittest import TestCase, main
 from typing import (
-    Union, ClassVar, Callable, Optional, TypeVar, Sequence, Mapping,
+    Union, Callable, Optional, TypeVar, Sequence, Mapping,
     MutableMapping, Iterable, Generic, List, Any, Dict, Tuple, NamedTuple,
 )
+
+try:
+    from typing import ClassVar
+except ImportError:
+    from typing_extensions import ClassVar
 
 
 class IsUtilityTestCase(TestCase):

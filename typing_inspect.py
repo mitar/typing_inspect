@@ -9,13 +9,21 @@ Example usage::
 
 from typing import (
     Callable, CallableMeta, Union, TupleMeta, TypeVar,
-    _gorg, _ClassVar, GenericMeta,
+    _gorg, GenericMeta,
 )
 
 try:
     from typing import _Union
 except ImportError:
     _Union = Union
+
+try:
+    from typing import _ClassVar
+except ImportError:
+    try:
+        from typing_extensions import _ClassVar
+    except ImportError:
+        from typing_extensions import ClassVarMeta as _ClassVar
 
 
 def is_generic_type(tp):
