@@ -191,7 +191,12 @@ def get_parameters(tp):
         is_generic_type(tp) or is_union_type(tp) or
         is_callable_type(tp) or is_tuple_type(tp)
     ):
-        return tp.__parameters__ if tp.__parameters__ is not None else ()
+        if hasattr(tp, '__tuple_params__'):
+            parameters = []
+            tp._get_type_vars(parameters)
+            return tuple(parameters)
+        else:
+            return tp.__parameters__ if tp.__parameters__ is not None else ()
     return ()
 
 
